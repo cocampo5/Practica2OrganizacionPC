@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-void suma(){
+void suma(){ //Recibe floatantes de 32 bits
 	float i, j,res;
 	cout << "Ingrese el primer numero: ";
 	cin >> i;
@@ -13,7 +13,7 @@ void suma(){
 	};
 	cout << "Su resultado es: " << res << endl;
 }
-void resta(){
+void resta(){ //Recibe floatantes de 32 bits
 	float i, j, res;
 	cout << "Ingrese el primer numero: ";
 	cin >> i;
@@ -26,7 +26,7 @@ void resta(){
 	};
 	cout << "Su resultado es: " << res << endl;
 }
-void multiplicacion(){
+void multiplicacion(){ //Recibe floatantes de 32 bits
 	float i, j, res;
 	cout << "Ingrese el primer numero: ";
 	cin >> i;
@@ -39,7 +39,7 @@ void multiplicacion(){
 	};
 	cout << "Su resultado es: " << res << endl;
 }
-void division(){
+void division(){ //Recibe floatantes de 32 bits
 	float i, j, res;
 	cout << "Ingrese el primer numero: ";
 	cin >> i;

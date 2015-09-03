@@ -14,6 +14,7 @@
     <ProjectGuid>{C6319AB5-B4A6-46DF-A862-CDD561632330}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Práctica2OrganizacióndeComputadores</RootNamespace>
+    <ProjectName>Práctica  2 Organización de Computadores</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -83,7 +84,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Práctica  2 Organización de Computadores.cpp" />
+    <ClCompile Include="Calculadora.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
