@@ -61,8 +61,8 @@ void division(){ //Recibe flotantes de 32 bits
 Trigonometricas
 Todo se maneja con la FPU (Floating Point Unit)
 FLD: Esto carga un 32 bits a st[0], puedo pasarle de 32,64,80 bits
-FSIN/FCOS/FPTAN: Hace el seno/coseno/tangete-parcial del almacenado en st[0]
-y lo almacena en el mismo st[0]
+FSIN/FCOS: Hace el seno/coseno del almacenado en st[0]
+y lo almacena en el mismo st[0]. La tangente es explícita.
 FST: Almacena en una variable el st[0]
 */
 void seno(){
@@ -99,16 +99,34 @@ void tangente(){
 	cin >> i;
 	i = i*constante;
 	__asm{
-		FLD[i]
-		FPTAN
-		FST[res]
+		FLD[i] //Cargo angulo
+		FSIN //saco el seno (queda en s(0))
+		FLD[i] //Cargo denuevo el angulo (el seno queda en s(1))
+		FCOS //Hago el seno (queda en s(0))
+		FDIVP st(1), st(0) //Divido seno entre coseno y hago pop
+		FST[res]//Almaceno el resultado
 	}
 	cout << "Su resultado es: " << res << endl;
+}
+void raiz(){
+	float i, res;
+	cout << "Ingrese un número mayor o igual a 0 : ";
+	cin >> i;
+	__asm{
+		FLD[i] //Cargo número
+		FSQRT //saco raiz cuadrada
+		FST[res]//Almaceno el resultado
+	}
+	cout << "Su resultado es: " << res << endl;
+}
+void exponente(){
+
 }
 int main(int argc, char* argv[])
 {
 	int elect;
-	cout << "Hola, tiene 13 operaciones:\n1->Suma 2->Resta 3->Multipliacion 4->Division\n5->Seno 6->Coseno 7->Tangente\n";
+	cout << "Hola, tiene 13 operaciones:\n1->Suma 2->Resta 3->Multipliacion 4->Division";
+	cout << "\n5->Seno 6->Coseno 7->Tangente 8->Raiz Cuadrada 9->Exponenciacion\n";
 	cout << "Ingrese su seleccion: "; //Son 13 opciones 
 	cin >> elect;
 	switch (elect)
@@ -135,7 +153,11 @@ int main(int argc, char* argv[])
 			tangente();
 			break;
 		case 8:
+			raiz();
+			break;
 		case 9:
+			exponente();
+			break;
 		case 10:
 		case 11:
 		case 12:
