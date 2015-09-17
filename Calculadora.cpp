@@ -120,7 +120,49 @@ void raiz(){
 	cout << "Su resultado es: " << res << endl;
 }
 void exponente(){
-
+	float base,res;
+	int exp;
+	cout << "Ingrese la base: ";
+	cin >> base;
+	res = base;
+	cout << "Ingrese el exponente: ";
+	cin >> exp;
+	__asm{
+		MOV ECX, [exp]
+		JMP cond
+		iter :
+			MOVSS xmm0, [res]
+			MULSS xmm0, [base]
+			MOVSS [res], xmm0
+			DEC ECX
+		cond :
+			CMP ECX, 0
+			JNE iter
+	}
+	cout << "Su resultado es: " << res << endl;
+}
+void exponente_log(){
+	float base, res,exp;
+	cout << "Ingrese la base: ";
+	cin >> base;
+	cout << "Ingrese el exponente: ";
+	cin >> exp;
+	__asm{
+		FLD[exp] //Cargo mi base
+		FLD[base] //Cargo mi exponente
+		FYL2X //Computo	y*log2(x) x^y
+		FLD st //Copia de y*log2(x) (y0)
+		FRNDINT //Redondeo a un INT (y1)
+		FSUB st(1),st //Dejo solo la parte decimal
+		FXCH st(1) //Swap de posiciones
+		F2XM1 //Computo y0-y1 (2^(parte_decimal))
+		FLD1 //Cargo un 1
+		FADD //Le sumo uno a 2^(parte_decimal)
+		FSCALE //Reuno parte decimal y parte entera
+		FSTP st(1) //Copio lo que me interesa y pop()
+		FST[res] //Guardo en la variable a mostrar
+	}
+	cout << "Su resultado es: " << res << endl;
 }
 int main(int argc, char* argv[])
 {
@@ -156,7 +198,7 @@ int main(int argc, char* argv[])
 			raiz();
 			break;
 		case 9:
-			exponente();
+			exponente_log();
 			break;
 		case 10:
 		case 11:
