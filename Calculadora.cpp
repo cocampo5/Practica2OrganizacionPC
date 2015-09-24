@@ -179,16 +179,27 @@ void log2(){
 
 }
 void log10(){
-	float i, res;
+	float i, res,aux;
 	cout << "Ingrese el número: ";
 	cin >> i;
+	__asm{
+		FLD1
+		FLD[i]
+		FYL2X
+		FSTP[aux]
+		FLD[aux]
+		FLDL2T
+		FDIVP ST(1), ST(0)
+		FSTP[res]
+	}
+	cout << "Su resultado es: " << res << endl;
 }
 int main(int argc, char* argv[])
 {
 	int elect;
 	cout << "Hola, tiene 13 operaciones:\n1->Suma 2->Resta 3->Multipliacion 4->Division";
 	cout << "\n5->Seno 6->Coseno 7->Tangente 8->Raiz Cuadrada 9->Exponenciacion\n";
-	cout << "10->Logaritmo en base 2\n";
+	cout << "10->Logaritmo en base 2 11->Logaritmo en base 10\n";
 	cout << "Ingrese su seleccion: "; //Son 13 opciones 
 	cin >> elect;
 	switch (elect)
@@ -224,6 +235,8 @@ int main(int argc, char* argv[])
 			log2();
 			break;
 		case 11:
+			log10();
+			break;
 		case 12:
 		case 13:
 		default:
