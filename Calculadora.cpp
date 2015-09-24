@@ -165,11 +165,30 @@ void exponente_log(){
 	//cout << base << exp << endl;
 	cout << "Su resultado es: " << res << endl;
 }
+void log2(){
+	float i, res;
+	cout << "Ingrese el número: ";
+	cin >> i;
+	__asm{
+		FLD1
+		FLD[i]
+		FYL2X
+		FST[res]
+	}
+	cout << "Su resultado es: "<< res << endl;
+
+}
+void log10(){
+	float i, res;
+	cout << "Ingrese el número: ";
+	cin >> i;
+}
 int main(int argc, char* argv[])
 {
 	int elect;
 	cout << "Hola, tiene 13 operaciones:\n1->Suma 2->Resta 3->Multipliacion 4->Division";
 	cout << "\n5->Seno 6->Coseno 7->Tangente 8->Raiz Cuadrada 9->Exponenciacion\n";
+	cout << "10->Logaritmo en base 2\n";
 	cout << "Ingrese su seleccion: "; //Son 13 opciones 
 	cin >> elect;
 	switch (elect)
@@ -202,6 +221,8 @@ int main(int argc, char* argv[])
 			exponente_log();
 			break;
 		case 10:
+			log2();
+			break;
 		case 11:
 		case 12:
 		case 13:
