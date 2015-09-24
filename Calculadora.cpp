@@ -162,6 +162,7 @@ void exponente_log(){
 		FSTP st(1) //Copio lo que me interesa y pop()
 		FST[res] //Guardo en la variable a mostrar
 	}
+	//cout << base << exp << endl;
 	cout << "Su resultado es: " << res << endl;
 }
 int main(int argc, char* argv[])
