@@ -42,9 +42,9 @@ Crear un programa con las siguientes opciones:
 
 		7. Logaritmo en base 10 (Listo)
 
-		8. e^x 
+		8. e^x  (Listo con FPU y artificio matemático)
 
-		9. n!
+		9. n! (Listo con recursividad)
 
 Archivos: 
 Calculadora.cpp //Código fuente principal
