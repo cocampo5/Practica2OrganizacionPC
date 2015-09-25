@@ -227,24 +227,20 @@ void factorial(){
 	__asm {
 		// ECX = base
 		MOV ecx, [i]
-
 			CMP[i], 0
 			JNE iter
-
 		case_0 :
-		MOV eax, [one]
-			MOV[res], eax
+		MOV EAX, [one]
+			MOV[res], EAX
 			JMP fin
-
 		iter :
-		MOV eax, [res]
-			MUL ecx
-			MOV[res], eax
+		MOV EAX, [res]
+			MUL ECX
+			MOV[res], EAX
 			LOOP iter
-
-			fin:
+		fin:
 	}
-	cout << "el resultado es: " << res << endl;
+	cout << "Su resultado es: " << res << endl;
 }
 
 int main(int argc, char* argv[])
