@@ -217,12 +217,42 @@ void ealax(){
 	//cout << base << exp << endl;
 	cout << "Su resultado es: " << res << endl;
 }
+void factorial(){
+	int res, i, cont, one;
+	cout << "ingrese un numero: ";
+	cin >> i;
+	cont = 0;
+	res = 1;
+	one = 1;
+	__asm {
+		// ECX = base
+		MOV ecx, [i]
+
+			CMP[i], 0
+			JNE iter
+
+		case_0 :
+		MOV eax, [one]
+			MOV[res], eax
+			JMP fin
+
+		iter :
+		MOV eax, [res]
+			MUL ecx
+			MOV[res], eax
+			LOOP iter
+
+			fin:
+	}
+	cout << "el resultado es: " << res << endl;
+}
+
 int main(int argc, char* argv[])
-{
+{	
 	int elect;
 	cout << "Hola, tiene 13 operaciones:\n1->Suma 2->Resta 3->Multipliacion 4->Division";
 	cout << "\n5->Seno 6->Coseno 7->Tangente 8->Raiz Cuadrada 9->Exponenciacion\n";
-	cout << "10->Logaritmo en base 2 11->Logaritmo en base 10 12->e^x\n";
+	cout << "10->Logaritmo en base 2 11->Logaritmo en base 10 12->e^x 13-> factorial\n";
 	cout << "Ingrese su seleccion: "; //Son 13 opciones 
 	cin >> elect;
 	switch (elect)
@@ -264,8 +294,10 @@ int main(int argc, char* argv[])
 			ealax();
 			break;
 		case 13:
+			factorial();
+			break;
 		default:
-			cout << "Hiciste una muy mala elección" << endl;
+			cout << "Hiciste una muy mala eleccion" << endl;
 			break;
 	}
 	system("pause");
