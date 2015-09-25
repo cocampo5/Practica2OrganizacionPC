@@ -221,6 +221,7 @@ void factorial(){
 	int res, i, cont, one;
 	cout << "teniendo en cuenta que no funcionan los negativos" << endl;
 	cout << "ingrese un numero: ";
+	cout << "teniendo en cuenta que no funcionan los negativos" << endl;
 	cin >> i;
 	cont = 0;
 	res = 1;
