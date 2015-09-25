@@ -194,12 +194,35 @@ void log10(){
 	}
 	cout << "Su resultado es: " << res << endl;
 }
+void ealax(){
+	float res, i;
+	float euler = 2.7182818284590452353602874713527f;
+	cout << "Ingrese un numero: ";
+	cin >> i;
+	__asm{
+		FLD[i] //Cargo mi exponente
+		FLD[euler] //Cargo mi base
+		FYL2X //Computo	y*log2(x) x^y
+		FLD st //Copia de y*log2(x) (y0)
+		FRNDINT //Redondeo a un INT (y1)
+		FSUB st(1), st //Dejo solo la parte decimal
+		FXCH st(1) //Swap de posiciones
+		F2XM1 //Computo y0-y1 (2^(parte_decimal))
+		FLD1 //Cargo un 1
+		FADD //Le sumo uno a 2^(parte_decimal)
+		FSCALE //Reuno parte decimal y parte entera
+		FSTP st(1) //Copio lo que me interesa y pop()
+		FST[res] //Guardo en la variable a mostrar
+	}
+	//cout << base << exp << endl;
+	cout << "Su resultado es: " << res << endl;
+}
 int main(int argc, char* argv[])
 {
 	int elect;
 	cout << "Hola, tiene 13 operaciones:\n1->Suma 2->Resta 3->Multipliacion 4->Division";
 	cout << "\n5->Seno 6->Coseno 7->Tangente 8->Raiz Cuadrada 9->Exponenciacion\n";
-	cout << "10->Logaritmo en base 2 11->Logaritmo en base 10\n";
+	cout << "10->Logaritmo en base 2 11->Logaritmo en base 10 12->e^x\n";
 	cout << "Ingrese su seleccion: "; //Son 13 opciones 
 	cin >> elect;
 	switch (elect)
@@ -238,6 +261,8 @@ int main(int argc, char* argv[])
 			log10();
 			break;
 		case 12:
+			ealax();
+			break;
 		case 13:
 		default:
 			cout << "Hiciste una muy mala elección" << endl;
